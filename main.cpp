@@ -1,133 +1,77 @@
+//
+// Created by Богдан Козлов on 22.12.2022.
+//
 #include <iostream>
-//#include <queue>
-//#include <stack>
+#include <stdlib.h>
 
-using namespace std;
-
-struct  Node
-{
-    int key;
-    Node *left;
-    Node *right;
-    int height;
+struct Node{
+    int date;
+    struct Node *next;
 };
 
-int height(Node *N)
-{
-    if (N == nullptr)
-        return 0;
-    return N->height;
-}
-
-int max(int a, int b)
-{
-    return (a > b)? a : b;
-}
-
-Node* newNode(int key)
-{
-    Node* node = new Node();
-    node->key = key;
-    node->left = nullptr;
-    node->right = nullptr;
-    node->height = 1;
-    return(node);
-}
-
-Node* insert(Node* node, int key)
-{
-    if (node == nullptr) {
-        node = newNode(key);
-        return(node);
+struct Steck{
+    Node *head = (Node *)malloc(sizeof(Node));
+    Node *tail = (Node *)malloc(sizeof(Node));
+    int size;
+    Steck() {
+        head->next = tail;
+        tail->next = NULL;
+        size = 0;
     }
-    else if (key < node->key) {
-        node->left = insert(node->left, key);
-//        if(key == node->key){
-//            key = NULL;
-//        }
+    void add(int dates){
+        Node *new_node = (Node *)malloc(sizeof(Node));
+        new_node->date = dates;
+        new_node->next = head->next;
+        head->next = new_node;
+        size++;
     }
-    else if (key > node->key) {
-        node->right = insert(node->right, key);
-//        if(key == node->key){
-//            key = NULL;
-//        }
+    int udalit(){
+        int date = head->next->date;
+        head->next = head->next->next;
+        size--;
+        return date;
     }
-    else {
-        return node;
-    }
+};
 
-    node->height = 1 + max(height(node->left), height(node->right));
-//    if(left != 0) {
-//        node->left = insert(node->left, left, NULL, NULL);
-//    }
-//    if(right != 0){
-//        node->right = insert(node->right, right, NULL, NULL);
-//    }
-    return node;
-}
-Node* InsertRL(Node * root, int key){
-    if(root == nullptr){
-        root = newNode(key);
-        return root;
-    }
-    else if (key < root->key) {
-        root->left = InsertRL(root->left, key);
-//        if(key == node->key){
-//            key = NULL;
-//        }
-    }
-    else if (key > root->key) {
-        root->right = InsertRL(root->right, key);
-//        if(key == node->key){
-//            key = NULL;
-//        }
-    }
-    root->height = 1 + max(height(root->left), height(root->right));
-//    else
-//    if(left != 0) {
-//        root->left = InsertRL(root->left, left, NULL, NULL);
-//    }
-//    if(right != 0){
-//        root->right = InsertRL(root->right, right, NULL, NULL);
-
-    return root;
-
-}
-
-Node *search(Node *node, int key){
-    if( node == nullptr or key == node->key){
-        return node;
-    }
-    if(key < node->key){
-        return search(node->left, key);
-    }
-    else{
-        return search(node->right, key);
-    }
-}
-
-int main()
-{
-    Node *root = nullptr;
-
-    int n;
-    cin >> n;
-    int k[n], l[n], r[n];
-
-    for(int i = 0; n != i; ++i){
-        cin >> k[i] >> l[i] >> r[i];
-        root = InsertRL(root, k[i]);
-    }
-
-
-//    for( int i = 0; n != i; ++i) {
-//
-//        root = InsertRL(root, k[i]);
-//    }
-    for(int m = 0; n != m; m) {
-//        cout << search(root, k[m])->key << ' ';
-        cout << height(search(root, k[m])->right) - height(search(root, k[m])->left) << '\n';
-        m += 1;
+int main(){
+    std :: string a;
+    while(std::cin >> a){
+        Steck stc;
+        bool n = true;
+        for(int i = 0;i<a.size();i++){
+            if(a[i] == '(' || a[i] == '['){
+                stc.add(a[i]);
+            }
+            else if(a[i] == ')'){
+                if(stc.size == 0){
+                    n = false;
+                    break;
+                }
+                char b = stc.udalit();
+                if(b != '('){
+                    n = false;
+                }
+            }
+            else if(a[i] == ']'){
+                if(stc.size == 0){
+                    n = false;
+                    break;
+                }
+                char bb = stc.udalit();
+                if(bb != '['){
+                    n = false;
+                }
+            }
+        }
+        if(stc.size != 0){
+            n = false;
+        }
+        if(n){
+            std::cout << "YES\n";
+        }
+        else{
+            std::cout << "NO\n";
+        }
     }
     return 0;
 }
