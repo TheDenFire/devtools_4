@@ -64,6 +64,12 @@ build CMakeFiles/devtools_4.dir/algo2.cpp.o: CXX_COMPILER__devtools_4_Debug /Use
   OBJECT_DIR = CMakeFiles/devtools_4.dir
   OBJECT_FILE_DIR = CMakeFiles/devtools_4.dir
 
+build CMakeFiles/devtools_4.dir/main.cpp.o: CXX_COMPILER__devtools_4_Debug /Users/bogdankozlov/Documents/git/devtools_4/main.cpp || cmake_object_order_depends_target_devtools_4
+  DEP_FILE = CMakeFiles/devtools_4.dir/main.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++17
+  OBJECT_DIR = CMakeFiles/devtools_4.dir
+  OBJECT_FILE_DIR = CMakeFiles/devtools_4.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target devtools_4
@@ -72,7 +78,7 @@ build CMakeFiles/devtools_4.dir/algo2.cpp.o: CXX_COMPILER__devtools_4_Debug /Use
 #############################################
 # Link the executable devtools_4
 
-build devtools_4: CXX_EXECUTABLE_LINKER__devtools_4_Debug CMakeFiles/devtools_4.dir/algo.cpp.o CMakeFiles/devtools_4.dir/algo3.cpp.o CMakeFiles/devtools_4.dir/algo2.cpp.o
+build devtools_4: CXX_EXECUTABLE_LINKER__devtools_4_Debug CMakeFiles/devtools_4.dir/algo.cpp.o CMakeFiles/devtools_4.dir/algo3.cpp.o CMakeFiles/devtools_4.dir/algo2.cpp.o CMakeFiles/devtools_4.dir/main.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk
   OBJECT_DIR = CMakeFiles/devtools_4.dir
   POST_BUILD = :
