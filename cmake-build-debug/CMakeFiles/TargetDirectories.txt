@@ -1,3 +1,0 @@
-/Users/bogdankozlov/Documents/git/devtools_4/cmake-build-debug/CMakeFiles/devtools_4.dir
-/Users/bogdankozlov/Documents/git/devtools_4/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/bogdankozlov/Documents/git/devtools_4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
