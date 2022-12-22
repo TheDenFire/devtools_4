@@ -1,8 +1,8 @@
 all:
-	g++ -std=c++17 main.cpp -o main
+	g++ -std=c++17 algo.cpp -o algo
 
 test:
-	chmod +x main
+	chmod +x algo
 
 clean:
-	$(RM) main
+	$(RM) algo
